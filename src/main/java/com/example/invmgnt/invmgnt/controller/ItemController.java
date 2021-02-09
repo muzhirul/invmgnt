@@ -38,6 +38,7 @@ public class ItemController {
 
     //    @Secured({"ROLE_EDITOR", "ROLE_ADMIN"})
     @RequestMapping("/index")
+
     public String getAllPaginated(HttpServletRequest request, Model model) {
 
         PaginationHelper pHelper = new PaginationHelper(request);
