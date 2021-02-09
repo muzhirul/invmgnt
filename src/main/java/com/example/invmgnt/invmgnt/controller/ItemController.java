@@ -104,7 +104,8 @@ public class ItemController {
         model.addAttribute("entity", postObjInst);
 //        redirAttrs.addFlashAttribute(SysMgsStr.msgKey1, SysMgsStr.msgDesc1);
 
-        return "redirect:/item/show/" + postObjInst.getId();
+      //  return "redirect:/item/show/" + postObjInst.getId();
+        return "redirect:/item/index";
     }
 
     @RequestMapping(path = {"/edit", "/edit/{id}"})
