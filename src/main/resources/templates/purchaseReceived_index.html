@@ -27,7 +27,7 @@
         <div class="card">
             <div class="card-header">
 
-                <a th:href="@{/item/create}" class="btn btn-outline-primary"><i class="fas fa-plus-circle"> Add Item</i></a>
+                <a th:href="@{/purchase/create}" class="btn btn-outline-primary"><i class="fas fa-plus-circle"> Add Purchase Received</i></a>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -51,28 +51,30 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>itemCode</th>
+                                    <th>orderNumber</th>
                                     <th>itemName</th>
-                                    <th>PurchasePrice</th>
-                                    <th>SellingPrice</th>
+                                    <th>Qty</th>
+                                    <th>UnitPrice</th>
+                                    <th>Amount</th>
                                     <th colspan="" style="">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="thisObj : ${objectList}">
                                     <td th:text="${thisObj.id}"></td>
-                                    <td th:text="${thisObj.itemCode}"></td>
-                                    <td th:text="${thisObj.itemName}"></td>
-                                    <td th:text="${thisObj.purchasePrice}"></td>
-                                    <td th:text="${thisObj.sellingPrice}"></td>
+                                    <td th:text="${thisObj.orderNumber}"></td>
+                                    <td th:text="${thisObj.item?.getItemName()}"></td>
+                                    <td th:text="${thisObj.qty}"></td>
+                                    <td th:text="${thisObj.unitPrice}"></td>
+                                    <td th:text="${thisObj.amount}"></td>
                                     <td class="text-nowrap" style="">
-                                        <a th:href="@{/item/show/{id}(id=${thisObj.id})}" class="btn btn-outline-secondary btn-sm">
+                                        <a th:href="@{/purchase/show/{id}(id=${thisObj.id})}" class="btn btn-outline-secondary btn-sm">
                                             <i class="far fa-eye"></i> View
                                         </a>
-                                        <a th:href="@{/item/edit/{id}(id=${thisObj.id})}" class="btn btn-outline-primary btn-sm">
+                                        <a th:href="@{/purchase/edit/{id}(id=${thisObj.id})}" class="btn btn-outline-primary btn-sm">
                                             <i class="far fa-edit"></i> Edit
                                         </a>
-                                        <a th:href="@{/item/delete/{id}(id=${thisObj.id})}" class="btn btn-outline-danger btn-sm">
+                                        <a th:href="@{/purchase/delete/{id}(id=${thisObj.id})}" class="btn btn-outline-danger btn-sm">
                                             <i class="far fa-trash-alt"></i> Delete
                                         </a>
                                     </td>
@@ -83,9 +85,9 @@
                         </div>
                         <!-- /.card-body -->
 
-<!--                        <div class="card-footer clearfix" th:with="pagePath='/item/index'">-->
-<!--                            <div th:include="layouts/_pagination :: defaultPagination"></div>-->
-<!--                        </div>-->
+                        <!--                        <div class="card-footer clearfix" th:with="pagePath='/item/index'">-->
+                        <!--                            <div th:include="layouts/_pagination :: defaultPagination"></div>-->
+                        <!--                        </div>-->
 
                     </div>
                     <!-- /.card -->

@@ -44,6 +44,22 @@
                 <div class="col-sm-5"><span th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="text-danger"></span></div>
             </div>
 
+            <div class="form-group row">
+                <label for="purchasePrice" class="col-form-label col-sm-2 ">Purchase Price</label>
+                <div class="col-sm-5">
+                    <input type="text" th:field="*{purchasePrice}" class="form-control" id="purchasePrice" placeholder="" />
+                </div>
+                <div class="col-sm-5"><span th:if="${#fields.hasErrors('purchasePrice')}" th:errors="*{purchasePrice}" class="text-danger"></span></div>
+            </div>
+
+            <div class="form-group row">
+                <label for="sellingPrice" class="col-form-label col-sm-2 ">Selling Price</label>
+                <div class="col-sm-5">
+                    <input type="text" th:field="*{sellingPrice}" class="form-control" id="sellingPrice" placeholder="" />
+                </div>
+                <div class="col-sm-5"><span th:if="${#fields.hasErrors('sellingPrice')}" th:errors="*{sellingPrice}" class="text-danger"></span></div>
+            </div>
+
 
         </div>
         <!-- /.card-body -->

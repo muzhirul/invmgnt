@@ -18,6 +18,30 @@ public class ItemMaster {
     @Column(name = "ITEM_NAME")
     private String itemName;
 
+    @Column(name = "PURCHASE_PRICE")
+    private Double purchasePrice;
+
+    @Column(name = "SELLING_PRICE")
+    private Double sellingPrice;
+
+    public Double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(Double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public Double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+
+
 
 
     public Long getId() {

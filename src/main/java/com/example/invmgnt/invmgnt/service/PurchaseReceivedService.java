@@ -3,6 +3,7 @@ package com.example.invmgnt.invmgnt.service;
 import com.example.invmgnt.invmgnt.domain.ItemMaster;
 import com.example.invmgnt.invmgnt.domain.PurchaseReceived;
 import com.example.invmgnt.invmgnt.repository.ItemMasterRepository;
+import com.example.invmgnt.invmgnt.repository.PurchaseReceivedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,19 +14,19 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class ItemMasterService {
+public class PurchaseReceivedService {
 
-    private final ItemMasterRepository repository;
+    private final PurchaseReceivedRepository repository;
 
 
     @Autowired
-    public ItemMasterService(ItemMasterRepository repository){
+    public PurchaseReceivedService(PurchaseReceivedRepository repository){
         this.repository = repository;
     }
 
 
-    public List<ItemMaster> getAll() {
-        List<ItemMaster> result = repository.findAll();
+    public List<PurchaseReceived> getAll() {
+        List<PurchaseReceived> result = repository.findAll();
 
         if(result.size() > 0) {
             return result;
@@ -34,7 +35,7 @@ public class ItemMasterService {
         }
     }
 
-//    public List<ItemMaster> getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
+    //    public List<ItemMaster> getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
 //
 //        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
 //
@@ -42,18 +43,18 @@ public class ItemMasterService {
 //        return (List<ItemMaster>) repository.findAll(pageable);
 //
 //    }
-public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
+    public Page< PurchaseReceived > getAllPaginated(int pageNum, int pageSize, String sortField, String sortDir) {
 
-    Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
 
-    Pageable pageable = PageRequest.of(pageNum - 1, pageSize, sort);
-    return repository.findAll(pageable);
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, sort);
+        return repository.findAll(pageable);
 
-}
+    }
 
 
-    public ItemMaster findById(Long id) throws Exception {
-        Optional<ItemMaster> entity = repository.findById(id);
+    public PurchaseReceived findById(Long id) throws Exception {
+        Optional<PurchaseReceived> entity = repository.findById(id);
 
         if(entity.isPresent()) {
             return entity.get();
@@ -62,7 +63,7 @@ public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sort
         }
     }
 
-    public ItemMaster getById(Long id) throws Exception {
+    public PurchaseReceived getById(Long id) throws Exception {
         return this.findById(id);
     }
 
@@ -70,7 +71,7 @@ public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sort
     public void setAttributeForCreateUpdate(){
     }
 
-    public ItemMaster createOrUpdate(ItemMaster entity) {
+    public PurchaseReceived createOrUpdate(PurchaseReceived entity) {
 
         this.setAttributeForCreateUpdate();
 
@@ -78,7 +79,7 @@ public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sort
             entity = repository.save(entity);
 
         } else {
-            Optional<ItemMaster> entityOptional = repository.findById(entity.getId());
+            Optional<PurchaseReceived> entityOptional = repository.findById(entity.getId());
             if(entityOptional.isPresent()) {
 //                SystemMenu editEntity = entityOptional.get();
 //                editEntity.setDisplayName(entity.getDisplayName());
@@ -94,7 +95,7 @@ public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sort
 
 
     public void deleteById(Long id) throws Exception {
-        Optional<ItemMaster> entity = repository.findById(id);
+        Optional<PurchaseReceived> entity = repository.findById(id);
 
         if(entity.isPresent()) {
             repository.deleteById(id);
@@ -105,18 +106,14 @@ public Page< ItemMaster > getAllPaginated(int pageNum, int pageSize, String sort
 
 
     // Others helper methods ///////////////////////////////////////////////////////////////////////////////////////////
-    public Map<Long, String> getMapAllItems() {
-
-        List<ItemMaster> result = repository.findAll();
-
-        Map<Long, String> map = new HashMap<>();
-        for (ItemMaster menu : result) {
-            map.put(menu.getId(), menu.getId().toString() + " - " + menu.getItemName());
-        }
-        return map;
-    }
-
-
-
-
+//    public Map<Long, String> getMapAllParentMenus() {
+//
+//        List<PurchaseReceived> result = repository.findAll();
+//
+//        Map<Long, String> map = new HashMap<>();
+//        for (PurchaseReceived menu : result) {
+//            map.put(menu.getId(), menu.getId().toString() + " - " + menu.getItemName());
+//        }
+//        return map;
+//    }
 }
