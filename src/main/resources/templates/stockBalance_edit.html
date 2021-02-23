@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Horizontal Form -->
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">Edit Stock Balance</h3>
+        &nbsp;&nbsp;
+        <a href="/item/index" th:href="@{/stock/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
+        &nbsp;|&nbsp;
+        <a href="/item/create" th:href="@{/stock/create}" class=""><i class="fas fa-file-alt"></i> New Form</a>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+    <form action="#" th:action="@{/stock/update}" th:object="${entity}" method="post" class="form-horizontal">
+        <div class="card-body">
+
+            <!--                            <input type="hidden" id="id" th:field="*{id}">-->
+
+            <div class="form-group row">
+                <label for="id" class="col-form-label col-sm-2 ">ID</label>
+                <div class="col-sm-5">
+                    <input type="text" th:field="*{id}" class="form-control" id="id" readonly />
+                </div>
+                <div class="col-sm-5"><span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="text-danger"></span></div>
+            </div>
+            <div class="form-group row">
+                <label for="item" class="col-form-label col-sm-2 ">Item</label>
+                <div class="col-sm-5">
+                    <!-- <input type="text" th:field="*{systemParentMenu}" class="form-control" id="parentMenu" placeholder="" /> -->
+                    <select th:field="*{item}" class="form-control" id="item">
+                        <option value=""> Select Item Name </option>
+                        <option th:each="key : ${allItems.keySet()}"
+                                th:value="${key}"
+                                th:utext="${allItems.get(key)}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="qty" class="col-form-label col-sm-2 ">Qty</label>
+                <div class="col-sm-5">
+                    <input type="text" th:field="*{qty}" class="form-control" id="qty" />
+                </div>
+                <div class="col-sm-5"><span th:if="${#fields.hasErrors('qty')}" th:errors="*{qty}" class="text-danger"></span></div>
+            </div>
+
+            <div class="form-group row">
+                <label for="avgWeightPrice" class="col-form-label col-sm-2 ">avgWeightPrice</label>
+                <div class="col-sm-5">
+                    <input type="text" th:field="*{avgWeightPrice}" class="form-control" id="avgWeightPrice" placeholder="" />
+                </div>
+                <div class="col-sm-5"><span th:if="${#fields.hasErrors('avgWeightPrice')}" th:errors="*{avgWeightPrice}" class="text-danger"></span></div>
+            </div>
+
+
+
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <a href="/purchase/index" th:href="@{/stock/index}" class="btn btn-default"><i class="fas fa-times"></i> Cancel</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-info"><i class="fas fa-check"></i> Update</button>
+        </div>
+        <!-- /.card-footer -->
+    </form>
+</div>
+<!-- /.card -->
+
+</body>
+</html>
