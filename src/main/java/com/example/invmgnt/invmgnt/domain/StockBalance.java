@@ -18,7 +18,7 @@ public class StockBalance {
     private Double qty;
 
     @Column(name = "AVG_WIGHT_PRICE")
-    private String avgWeightPrice;
+    private Double avgWeightPrice;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class StockBalance {
         this.qty = qty;
     }
 
-    public String getAvgWeightPrice() {
+    public Double getAvgWeightPrice() {
         return avgWeightPrice;
     }
 
-    public void setAvgWeightPrice(String avgWeightPrice) {
+    public void setAvgWeightPrice(Double avgWeightPrice) {
         this.avgWeightPrice = avgWeightPrice;
     }
 }

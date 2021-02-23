@@ -2,8 +2,10 @@ package com.example.invmgnt.invmgnt.service;
 
 import com.example.invmgnt.invmgnt.domain.ItemMaster;
 import com.example.invmgnt.invmgnt.domain.PurchaseReceived;
+import com.example.invmgnt.invmgnt.domain.StockBalance;
 import com.example.invmgnt.invmgnt.repository.ItemMasterRepository;
 import com.example.invmgnt.invmgnt.repository.PurchaseReceivedRepository;
+import com.example.invmgnt.invmgnt.repository.StockBalanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,8 @@ import java.util.*;
 public class PurchaseReceivedService {
 
     private final PurchaseReceivedRepository repository;
+    @Autowired
+    private StockBalanceRepository stockRepository;
 
 
     @Autowired
@@ -68,8 +72,43 @@ public class PurchaseReceivedService {
     }
 
 
+
+    public void createOrUpdateStockBalance(PurchaseReceived purchaseReceived){
+
+        ItemMaster item = purchaseReceived.getItem();
+        StockBalance sb = stockRepository.findByItem(item);
+        if(sb==null){
+            sb = new StockBalance();
+            sb.setItem(item);
+            sb.setQty(purchaseReceived.getQty());
+            sb.setAvgWeightPrice(purchaseReceived.getUnitPrice());
+            stockRepository.save(sb);
+        }else {
+            Double existQty = sb.getQty();
+            Double existAmt = sb.getAvgWeightPrice();
+
+            Double tnxQty = purchaseReceived.getQty();
+            Double tnxAmt = purchaseReceived.getUnitPrice();
+
+            Double existAvgAmt = existQty * existAmt;
+            Double tnxAvgAmt = tnxQty * tnxAmt;
+
+            Double toAmt = existAvgAmt + tnxAvgAmt;
+
+            Double tobQty = existQty + tnxQty;
+
+            Double avgAmt = toAmt / tobQty;
+
+            sb.setQty(tobQty);
+            sb.setAvgWeightPrice(avgAmt);
+            stockRepository.save(sb);
+        }
+    }
+
+
     public PurchaseReceived setAttributeForCreateUpdate(PurchaseReceived purchaseReceived){
         ItemMaster item = purchaseReceived.getItem();
+
         Double qty = purchaseReceived.getQty();
         Double unitPrice = (item == null) ? 0.00 : item.getPurchasePrice();
         Double amount = qty * unitPrice;
@@ -81,6 +120,7 @@ public class PurchaseReceivedService {
     public PurchaseReceived createOrUpdate(PurchaseReceived entity) {
 
         entity = this.setAttributeForCreateUpdate(entity);
+        this.createOrUpdateStockBalance(entity);
 
         if(entity.getId() == null) {
             entity = repository.save(entity);
