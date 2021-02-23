@@ -51,7 +51,7 @@ public class StockController {
 
         model.addAttribute("objectList", list);
 
-        return "purchaseReceived_index";
+        return "stockBalance_index";
     }
 
 
