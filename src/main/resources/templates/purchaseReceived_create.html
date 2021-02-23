@@ -63,7 +63,7 @@
             <div class="form-group row">
                 <label for="unitPrice" class="col-form-label col-sm-2 ">Unit Price</label>
                 <div class="col-sm-5">
-                    <input type="text" th:field="*{unitPrice}" class="form-control" id="unitPrice" placeholder="" />
+                    <input type="text" th:field="*{unitPrice}" class="form-control" id="unitPrice" placeholder="" readonly />
                 </div>
                 <div class="col-sm-5"><span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}" class="text-danger"></span></div>
             </div>
@@ -71,7 +71,7 @@
             <div class="form-group row">
                 <label for="amount" class="col-form-label col-sm-2 ">Amount</label>
                 <div class="col-sm-5">
-                    <input type="text" th:field="*{amount}" class="form-control" id="amount" placeholder="" />
+                    <input type="text" th:field="*{amount}" class="form-control" id="amount" placeholder="" readonly />
                 </div>
                 <div class="col-sm-5"><span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="text-danger"></span></div>
             </div>

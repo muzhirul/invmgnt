@@ -24,24 +24,6 @@ public class ItemMaster {
     @Column(name = "SELLING_PRICE")
     private Double sellingPrice;
 
-    public Double getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public void setPurchasePrice(Double purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
-
-    public Double getSellingPrice() {
-        return sellingPrice;
-    }
-
-    public void setSellingPrice(Double sellingPrice) {
-        this.sellingPrice = sellingPrice;
-    }
-
-
-
 
 
     public Long getId() {
@@ -67,4 +49,22 @@ public class ItemMaster {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
+
+    public Double getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(Double purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public Double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(Double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+
 }

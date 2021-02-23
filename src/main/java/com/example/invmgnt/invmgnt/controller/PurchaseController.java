@@ -69,9 +69,7 @@ public class PurchaseController {
         }
         postObjInst = service.createOrUpdate(postObjInst);
         model.addAttribute("entity", postObjInst);
-//        redirAttrs.addFlashAttribute(SysMgsStr.msgKey1, SysMgsStr.msgDesc1);
 
-        //  return "redirect:/item/show/" + postObjInst.getId();
         return "redirect:/purchase/index";
     }
 

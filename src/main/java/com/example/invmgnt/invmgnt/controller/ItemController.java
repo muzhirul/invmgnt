@@ -21,22 +21,15 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/item")
 public class ItemController {
+
     private ItemMasterService service;
+
     @Autowired
     public void setInjectedBean(ItemMasterService service) {
         this.service = service;
     }
 
 
-    @RequestMapping("/index1")
-    public String getAll(Model model)
-    {
-        List<ItemMaster> list = service.getAll();
-        model.addAttribute("objectList", list);
-        return "view/auth/role/index";
-    }
-
-    //    @Secured({"ROLE_EDITOR", "ROLE_ADMIN"})
     @RequestMapping("/index")
     public String getAllPaginated(HttpServletRequest request, Model model) {
 
@@ -72,21 +65,6 @@ public class ItemController {
     }
 
 
-/*    @GetMapping(value = "/showAll")
-    public String showAll(Model model)
-    {
-        List<ItemMaster> entityList = null;
-        try {
-            entityList = service.getAll();
-        } catch (Exception ex) {
-//            model.addAttribute(SysMgsStr.msgKey3, SysMgsStr.msgDesc3);
-        }
-        model.addAttribute("entityList", entityList);
-        return "itemMaster_index";
-    }*/
-
-
-
     @RequestMapping(path = "/create")
     public String create(Model model)
     {
@@ -102,9 +80,7 @@ public class ItemController {
         }
         postObjInst = service.createOrUpdate(postObjInst);
         model.addAttribute("entity", postObjInst);
-//        redirAttrs.addFlashAttribute(SysMgsStr.msgKey1, SysMgsStr.msgDesc1);
 
-      //  return "redirect:/item/show/" + postObjInst.getId();
         return "redirect:/item/index";
     }
 
@@ -124,7 +100,6 @@ public class ItemController {
     public String update(ItemMaster postObjInst, RedirectAttributes redirAttrs)
     {
         postObjInst = service.createOrUpdate(postObjInst);
-//        redirAttrs.addFlashAttribute(SysMgsStr.msgKey1, SysMgsStr.msgDesc1u);
         return "redirect:/item/show/" + postObjInst.getId();
     }
 
@@ -132,7 +107,9 @@ public class ItemController {
     public String deleteById(@PathVariable("id") Long id, RedirectAttributes redirAttrs) throws Exception
     {
         service.deleteById(id);
-//        redirAttrs.addFlashAttribute(SysMgsStr.msgKey2, SysMgsStr.msgDesc2);
         return "redirect:/item/index";
     }
+
+
+
 }

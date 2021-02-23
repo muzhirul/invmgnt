@@ -68,12 +68,19 @@ public class PurchaseReceivedService {
     }
 
 
-    public void setAttributeForCreateUpdate(){
+    public PurchaseReceived setAttributeForCreateUpdate(PurchaseReceived purchaseReceived){
+        ItemMaster item = purchaseReceived.getItem();
+        Double qty = purchaseReceived.getQty();
+        Double unitPrice = (item == null) ? 0.00 : item.getPurchasePrice();
+        Double amount = qty * unitPrice;
+        purchaseReceived.setUnitPrice(unitPrice);
+        purchaseReceived.setAmount(amount);
+        return purchaseReceived;
     }
 
     public PurchaseReceived createOrUpdate(PurchaseReceived entity) {
 
-        this.setAttributeForCreateUpdate();
+        entity = this.setAttributeForCreateUpdate(entity);
 
         if(entity.getId() == null) {
             entity = repository.save(entity);
