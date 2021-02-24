@@ -20,7 +20,6 @@
         &nbsp;&nbsp;
         <a href="/item/index" th:href="@{/stock/index}" class=""><i class="fas fa-long-arrow-alt-left"></i> Back to List</a>
         &nbsp;|&nbsp;
-        <a href="/item/create" th:href="@{/stock/create}" class=""><i class="fas fa-file-alt"></i> New Form</a>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -84,9 +83,7 @@
 
         </div>
         <!-- /.card-body -->
-        <div class="card-footer">
-            <a href="/stock/edit/" th:href="@{/stock/edit/{id}(id=${entity.id})}" class="btn btn-info"><i class="far fa-edit"></i> Edit</a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="card-footer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/stock/delete/" th:href="@{/stock/delete/{id}(id=${entity.id})}" class="btn btn-danger"><i class="far fa-trash-alt"></i> Delete</a>
         </div>
         <!-- /.card-footer -->

@@ -28,8 +28,6 @@
         <div class="card">
             <div class="card-header">
 
-                <a th:href="@{/stock/create}" class="btn btn-outline-primary"><i class="fas fa-plus-circle"> Add Purchase Received</i></a>
-
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -39,7 +37,7 @@
             </div>
 
             <div class="card-body p-0">
-
+                <h3>Stock Information</h3>
 
                 <!-- Customize user body content -->
                 <div th:switch="${objectList}">
@@ -67,9 +65,6 @@
                                     <td class="text-nowrap" style="">
                                         <a th:href="@{/stock/show/{id}(id=${thisObj.id})}" class="btn btn-outline-secondary btn-sm">
                                             <i class="far fa-eye"></i> View
-                                        </a>
-                                        <a th:href="@{/stock/edit/{id}(id=${thisObj.id})}" class="btn btn-outline-primary btn-sm">
-                                            <i class="far fa-edit"></i> Edit
                                         </a>
                                         <a th:href="@{/stock/delete/{id}(id=${thisObj.id})}" class="btn btn-outline-danger btn-sm">
                                             <i class="far fa-trash-alt"></i> Delete
