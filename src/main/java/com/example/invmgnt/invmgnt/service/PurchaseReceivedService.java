@@ -20,13 +20,13 @@ public class PurchaseReceivedService {
 
     private final PurchaseReceivedRepository repository;
     @Autowired
-    private StockBalanceRepository stockRepository;
-
-
-    @Autowired
     public PurchaseReceivedService(PurchaseReceivedRepository repository){
         this.repository = repository;
     }
+
+
+    @Autowired
+    private StockBalanceRepository stockRepository;
 
 
     public List<PurchaseReceived> getAll() {
